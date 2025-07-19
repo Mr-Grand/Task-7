@@ -2,21 +2,17 @@
 
 public class Flight
 {
+    private int _passengers;
+    private List<Carriage> _train = new();
+    public int Positions { get; private set; }
     public string? FlightStationOne { get; private set; }
     public string? FlightStationTwo { get; private set; }
-    private int _passengers;
-    private int _positions;
-    private List<Carriage> _train = new();
+    
     public bool FlightStatus { get; private set; } = false;
-
-    public int Positions
-    {
-        get { return _positions; }
-    }
 
     public int Passengers
     {
-        get { return  _passengers; }
+        get { return _passengers; }
         set
         {
             if (value > 0)
@@ -29,14 +25,14 @@ public class Flight
     public void SetPassengers(int passengers)
     {
         Passengers = passengers;
-        _positions = Passengers;
+        Positions = Passengers; // Правильно ли так делать? Позаимствовал свойство
     }
 
     public void SetFlightStationOne(string flightStation)
     {
         FlightStationOne = flightStation;
     }
-    
+
     public void SetFlightStationTwo(string flightStation)
     {
         FlightStationTwo = flightStation;
@@ -44,7 +40,7 @@ public class Flight
 
     public void ChangePositions(int count)
     {
-        _positions -= count;
+        Positions -= count;
     }
 
     public void SendFlight()
@@ -71,9 +67,10 @@ public class Flight
 
         if (_train.Count != 0)
         {
-            foreach (var carriage in _train) 
+            foreach (Carriage carriage in _train)
             {
-                Console.WriteLine($"{carriage.Name} - вместимость {carriage.Capacity}, свободно {carriage.FreePositions}");
+                Console.WriteLine($"{carriage.Name} - вместимость {carriage.Capacity}," +
+                                  $" свободно {carriage.FreePositions}");
             }
         }
 
@@ -82,11 +79,4 @@ public class Flight
             Console.WriteLine($"Поезд отбывает со станции {FlightStationOne} в направлении {FlightStationTwo}");
         }
     }
-    
-    
-    
-
-
-
-
 }

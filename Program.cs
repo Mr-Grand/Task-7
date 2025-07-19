@@ -1,4 +1,5 @@
 ﻿namespace Task_7;
+
 using System.Threading;
 
 class Program
@@ -9,9 +10,9 @@ class Program
         while (true)
         {
             Flight flight = new Flight();
-            
+
             flight.ShowFlightInfo();
-            
+
             Console.WriteLine("Введите пункт отправления: ");
             string? stationOne = Console.ReadLine();
             if (stationOne != null)
@@ -19,7 +20,7 @@ class Program
             else
                 Console.WriteLine("Пропущена первая станция!");
             Console.Clear();
-            
+
             flight.ShowFlightInfo();
             Console.WriteLine("Введите пункт назначения: ");
             string? stationTwo = Console.ReadLine();
@@ -28,11 +29,11 @@ class Program
             else
                 Console.WriteLine("Пропущена первая станция!");
             Console.Clear();
-            
+
             flight.ShowFlightInfo();
             Console.WriteLine("Идет продажа билетов! Подождите...");
             Thread.Sleep(3000);
-            flight.SetPassengers(random.Next(1,1000));
+            flight.SetPassengers(random.Next(1, 1000));
             Console.WriteLine($"Готово! Продано билетов: {flight.Passengers}\n");
             Console.Clear();
 
@@ -51,11 +52,11 @@ class Program
 
                 Console.Clear();
             }
-            
+
             flight.ShowFlightInfo();
-            
+
             Console.WriteLine("\nОтправить поезд?");
-            string inputAnswerYesOrNo = Console.ReadLine();
+            string? inputAnswerYesOrNo = Console.ReadLine();
             if (inputAnswerYesOrNo == "no")
             {
                 break;
@@ -66,7 +67,7 @@ class Program
                 flight.SendFlight();
                 flight.ShowFlightInfo();
             }
-            
+
             Console.ReadLine();
             Console.Clear();
         }

@@ -12,7 +12,7 @@ public class Carriage
         Name = "Вагон №" + name;
     }
 
-    public void SetCapacity() 
+    public void SetCapacity()
     {
         Console.WriteLine("Введите количество мест в вагоне: ");
         int inputPositionNumber;
