@@ -79,9 +79,8 @@ public class Flight
 
         if (FlightStatus)
         {
-            Console.WriteLine("Рейс начался");
+            Console.WriteLine($"Поезд отбывает со станции {FlightStationOne} в направлении {FlightStationTwo}");
         }
-        
     }
     
     

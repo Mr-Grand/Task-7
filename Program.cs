@@ -8,7 +8,6 @@ class Program
         Random random = new Random();
         while (true)
         {
-            
             Flight flight = new Flight();
             
             flight.ShowFlightInfo();
@@ -43,8 +42,7 @@ class Program
                 Console.WriteLine($"Добавление нового вагона в поезд... Введите сколько в вагоне мест: ");
                 Carriage carriage = new Carriage();
                 carriage.SetCarriageName(Convert.ToString(i));
-                int inputPositionNumber = Convert.ToInt32(Console.ReadLine());
-                carriage.SetCapacity(inputPositionNumber);
+                carriage.SetCapacity();
                 carriage.SetFreePositions(flight);
                 flight.ChangePositions(carriage.Capacity);
                 flight.AddCarriage(carriage);
@@ -58,17 +56,16 @@ class Program
             
             Console.WriteLine("\nОтправить поезд?");
             string inputAnswerYesOrNo = Console.ReadLine();
-            if (inputAnswerYesOrNo == "yes")
-            {
-                Console.Clear();
-                flight.ShowFlightInfo();
-            }
-            else if (inputAnswerYesOrNo == "no")
+            if (inputAnswerYesOrNo == "no")
             {
                 break;
             }
-            
-
+            else
+            {
+                Console.Clear();
+                flight.SendFlight();
+                flight.ShowFlightInfo();
+            }
             
             Console.ReadLine();
             Console.Clear();

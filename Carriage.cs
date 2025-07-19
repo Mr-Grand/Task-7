@@ -12,10 +12,20 @@ public class Carriage
         Name = "Вагон №" + name;
     }
 
-    public void SetCapacity(int capacity) 
+    public void SetCapacity() 
     {
-        
-        Capacity = capacity;
+        Console.WriteLine("Введите количество мест в вагоне: ");
+        int inputPositionNumber;
+        bool ifCorrect = int.TryParse(Console.ReadLine(), out inputPositionNumber);
+        if (ifCorrect && inputPositionNumber > 0)
+        {
+            Capacity = inputPositionNumber;
+        }
+        else
+        {
+            Console.WriteLine("Введите корректное значение!");
+            SetCapacity();
+        }
     }
 
     public void SetFreePositions(Flight flightObject)
@@ -25,5 +35,4 @@ public class Carriage
         else
             FreePositions = Capacity - flightObject.Positions;
     }
-    
 }
