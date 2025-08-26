@@ -29,7 +29,6 @@ class Program
                 flight.SendFlight();
                 flight.ShowFlightInfo();
             }
-
             Console.ReadLine();
             Console.Clear();
         }
@@ -40,7 +39,7 @@ class Program
         Console.WriteLine("Введите пункт отправления: ");
         string? stationOne = Console.ReadLine();
         if (stationOne != null)
-            flight.SetFlightStationOne(stationOne);
+            flight.SetDepartureStation(stationOne);
         else
             Console.WriteLine("Пропущена первая станция!");
         Console.Clear();
@@ -49,7 +48,7 @@ class Program
         Console.WriteLine("Введите пункт назначения: ");
         string? stationTwo = Console.ReadLine();
         if (stationTwo != null)
-            flight.SetFlightStationTwo(stationTwo);
+            flight.SetArrivalStation(stationTwo);
         else
             Console.WriteLine("Пропущена первая станция!");
         Console.Clear();
@@ -61,7 +60,7 @@ class Program
         flight.ShowFlightInfo();
         Console.WriteLine("Идет продажа билетов! Подождите...");
         Thread.Sleep(3000);
-        flight.SetPassengers(random.Next(1, 1000));
+        flight.SetPassengersAndResetPositions(random.Next(1, 1000));
         Console.WriteLine($"Готово! Продано билетов: {flight.Passengers}\n");
         Console.Clear();
 
@@ -73,7 +72,7 @@ class Program
             carriage.SetCarriageId(Convert.ToString(i));
             carriage.SetCapacity();
             carriage.SetFreePositions(flight);
-            flight.ChangePositions(carriage.Capacity);
+            flight.ChangePositions(int.Min(flight.Positions, carriage.Capacity));
             flight.AddCarriage(carriage);
             if (flight.Positions == 0)
                 break;

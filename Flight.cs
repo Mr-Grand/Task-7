@@ -5,9 +5,9 @@ public class Flight
     private int _passengers;
     private List<Carriage> _train = new();
     public int Positions { get; private set; }
-    public string? FlightStationOne { get; private set; }
-    public string? FlightStationTwo { get; private set; }
-    public bool FlightStatus { get; private set; } = false;
+    public string? DepartureStation { get; private set; }
+    public string? ArrivalStation { get; private set; }
+    public bool IsDeparted { get; private set; } = false;
 
     public int Passengers
     {
@@ -21,20 +21,20 @@ public class Flight
         }
     }
 
-    public void SetPassengers(int passengers)
+    public void SetPassengersAndResetPositions(int passengers)
     {
         Passengers = passengers;
-        Positions = Passengers; // Правильно ли так делать? Позаимствовал свойство
+        Positions = Passengers;
     }
 
-    public void SetFlightStationOne(string flightStation)
+    public void SetDepartureStation(string flightStation)
     {
-        FlightStationOne = flightStation;
+        DepartureStation = flightStation;
     }
 
-    public void SetFlightStationTwo(string flightStation)
+    public void SetArrivalStation(string flightStation)
     {
-        FlightStationTwo = flightStation;
+        ArrivalStation = flightStation;
     }
 
     public void ChangePositions(int count)
@@ -44,7 +44,7 @@ public class Flight
 
     public void SendFlight()
     {
-        FlightStatus = true;
+        IsDeparted = true;
     }
 
     public void AddCarriage(Carriage carriage)
@@ -54,9 +54,9 @@ public class Flight
 
     public void ShowFlightInfo()
     {
-        if (FlightStationOne != null)
+        if (DepartureStation != null)
         {
-            Console.WriteLine($"Направления поезда: {FlightStationOne} - {FlightStationTwo}");
+            Console.WriteLine($"Направления поезда: {DepartureStation} - {ArrivalStation}");
         }
 
         if (Passengers > 0)
@@ -73,9 +73,9 @@ public class Flight
             }
         }
 
-        if (FlightStatus)
+        if (IsDeparted)
         {
-            Console.WriteLine($"Поезд отбывает со станции {FlightStationOne} в направлении {FlightStationTwo}");
+            Console.WriteLine($"Поезд отбывает со станции {DepartureStation} в направлении {ArrivalStation}");
         }
     }
 }
