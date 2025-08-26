@@ -7,7 +7,6 @@ public class Flight
     public int Positions { get; private set; }
     public string? FlightStationOne { get; private set; }
     public string? FlightStationTwo { get; private set; }
-    
     public bool FlightStatus { get; private set; } = false;
 
     public int Passengers
@@ -69,7 +68,7 @@ public class Flight
         {
             foreach (Carriage carriage in _train)
             {
-                Console.WriteLine($"{carriage.Name} - вместимость {carriage.Capacity}," +
+                Console.WriteLine($"{carriage.Id} - вместимость {carriage.Capacity}," +
                                   $" свободно {carriage.FreePositions}");
             }
         }

@@ -2,14 +2,13 @@
 
 public class Carriage
 {
-    public string Name { get; private set; } = "Вагон №";
+    public string Id { get; private set; } = "Вагон №";
     public int Capacity { get; private set; }
     public int FreePositions { get; private set; }
-    public Flight flight;
 
-    public void SetCarriageName(string name)
+    public void SetCarriageId(string id)
     {
-        Name += name;
+        Id += id;
     }
 
     public void SetCapacity()
