@@ -34,23 +34,30 @@ class Program
         }
     }
 
+    private static string ReadStation(string promt)
+    {
+        Console.WriteLine(promt);
+        string? station = Console.ReadLine();
+        return station ?? string.Empty;
+    }
+    
     private static void CreateRoutePoints(Flight flight)
     {
-        Console.WriteLine("Введите пункт отправления: ");
-        string? stationOne = Console.ReadLine();
-        if (stationOne != null)
-            flight.SetDepartureStation(stationOne);
+        string departure = ReadStation("Введите станцию отправления:");
+        if (!string.IsNullOrEmpty(departure))
+            flight.SetDepartureStation(departure);
         else
-            Console.WriteLine("Пропущена первая станция!");
+            Console.WriteLine("Пропущена станция отправления!");
+        
         Console.Clear();
-
         flight.ShowFlightInfo();
-        Console.WriteLine("Введите пункт назначения: ");
-        string? stationTwo = Console.ReadLine();
-        if (stationTwo != null)
-            flight.SetArrivalStation(stationTwo);
+
+        string arrival = ReadStation("Введите станцию назначения");
+        if (!string.IsNullOrEmpty(arrival))
+            flight.SetArrivalStation(arrival);
         else
-            Console.WriteLine("Пропущена первая станция!");
+            Console.WriteLine("Пропущена станция назначения");
+        
         Console.Clear();
     }
 
@@ -72,7 +79,7 @@ class Program
             carriage.SetCarriageId(Convert.ToString(i));
             carriage.SetCapacity();
             carriage.SetFreePositions(flight);
-            flight.ChangePositions(int.Min(flight.Positions, carriage.Capacity));
+            flight.RemovePositions(int.Min(flight.Positions, carriage.Capacity));
             flight.AddCarriage(carriage);
             if (flight.Positions == 0)
                 break;

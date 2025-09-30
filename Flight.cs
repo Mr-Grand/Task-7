@@ -4,8 +4,9 @@ public class Flight
 {
     private int _passengers;
     private List<Carriage> _train = new();
+    
     public int Positions { get; private set; }
-    public string? DepartureStation { get; private set; }
+    public string DepartureStation { get; private set; }
     public string? ArrivalStation { get; private set; }
     public bool IsDeparted { get; private set; } = false;
 
@@ -37,7 +38,7 @@ public class Flight
         ArrivalStation = flightStation;
     }
 
-    public void ChangePositions(int count)
+    public void RemovePositions(int count)
     {
         Positions -= count;
     }
