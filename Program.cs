@@ -17,7 +17,7 @@ class Program
             flight.ShowFlightInfo();
 
             Console.WriteLine("\nОтправить поезд?");
-            string? inputAnswerYesOrNo = Console.ReadLine();
+            string inputAnswerYesOrNo = Console.ReadLine();
             if (inputAnswerYesOrNo == "no")
             {
                 Console.WriteLine("Рейс отменен");
@@ -37,7 +37,7 @@ class Program
     private static string ReadStation(string promt)
     {
         Console.WriteLine(promt);
-        string? station = Console.ReadLine();
+        string station = Console.ReadLine();
         return station ?? string.Empty;
     }
     
@@ -65,9 +65,13 @@ class Program
     {
         Random random = new Random();
         flight.ShowFlightInfo();
+        // Добавил отступов где различаются блоки по логике, надеюсь не слишком много?
+        
         Console.WriteLine("Идет продажа билетов! Подождите...");
         Thread.Sleep(3000);
+        
         flight.SetPassengersAndResetPositions(random.Next(1, 1000));
+        
         Console.WriteLine($"Готово! Продано билетов: {flight.Passengers}\n");
         Console.Clear();
 
@@ -75,10 +79,13 @@ class Program
         {
             Console.WriteLine($"{flight.Positions} пассажиров ожидают посадку на поезд");
             Console.WriteLine($"Добавление нового вагона в поезд... Введите сколько в вагоне мест: ");
+            
             Carriage carriage = new Carriage();
+            
             carriage.SetCarriageId(Convert.ToString(i));
             carriage.SetCapacity();
             carriage.SetFreePositions(flight);
+            
             flight.RemovePositions(int.Min(flight.Positions, carriage.Capacity));
             flight.AddCarriage(carriage);
             if (flight.Positions == 0)

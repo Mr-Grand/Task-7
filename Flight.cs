@@ -7,7 +7,7 @@ public class Flight
     
     public int Positions { get; private set; }
     public string DepartureStation { get; private set; }
-    public string? ArrivalStation { get; private set; }
+    public string ArrivalStation { get; private set; }
     public bool IsDeparted { get; private set; } = false;
 
     public int Passengers
